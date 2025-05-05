@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Планировщик задач</title>
+<!-- Подключение стилей -->
+<link rel="stylesheet" href="/CSS/styles.css" />
+<!-- Шрифты и анимации -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
+</head>
+<body>
+<div class="fluid-app">
+  <!-- Прогресс-бар -->
+  <div class="progress-container">
+    <div class="progress-bar" id="progress-bar"></div>
+    <div class="progress-text" id="progress-text">0%</div>
+  </div>
+
+  <!-- Заголовок -->
+  <header class="app-header">
+    <div class="date-nav">
+      <button class="nav-btn prev-day">&larr;</button>
+      <h1 class="current-date" id="current-date">Сегодня</h1>
+      <button class="nav-btn next-day">&rarr;</button>
+    </div>
+    <div class="progress-circle">
+      <svg width="60" height="60" viewBox="0 0 44 44">
+        <circle class="progress-bg" cx="22" cy="22" r="18"></circle>
+        <circle class="progress-fill" cx="22" cy="22" r="18" id="circle-progress"></circle>
+      </svg>
+      <span id="circle-percent">0%</span>
+    </div>
+  </header>
+
+  <!-- Контейнер задач -->
+  <main class="tasks-container" id="tasks-container">
+    <!-- Задачи будут добавляться сюда -->
+    <div class="empty-state animate__animated animate__fadeIn" id="empty-state">
+      <div class="empty-icon">✏️</div>
+      <h3>Нет задач на сегодня</h3>
+      <p>Добавьте первую задачу кнопкой +</p>
+    </div>
+  </main>
+
+  <!-- Кнопка добавления -->
+  <button class="add-task-btn" id="add-task-btn">+</button>
+
+  <!-- Модальное окно редактирования -->
+  <div class="edit-modal" id="edit-modal">
+    <div class="edit-content">
+      <h3>Новая задача</h3>
+      <input type="text" id="task-edit-input" placeholder="Введите задачу" style="width: 100%; margin-bottom: 10px;">
+      <div style="display:flex; justify-content: space-between;">
+        <button class="save-edit">Сохранить</button>
+        <button class="cancel-edit">Отмена</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="edit-modal" id="edit-modal">
+    <div class="edit-content">
+        <h3>Редактировать задачу</h3>
+        <input type="text" id="task-edit-input" class="task-edit-input" placeholder="Текст задачи">
+        
+        <div class="form-row">
+            <div class="form-group">
+                <label for="task-date-input">Дата</label>
+                <input type="date" id="task-date-input" class="task-date-input">
+            </div>
+            <div class="form-group">
+                <label for="task-time-input">Время</label>
+                <input type="time" id="task-time-input" class="task-time-input">
+            </div>
+        </div>
+        
+        <div class="edit-actions">
+            <button class="save-edit">Сохранить</button>
+            <button class="cancel-edit">Отмена</button>
+        </div>
+    </div>
+</div>
+
+<!-- Подключение скрипта -->
+<script src="/JS/script.js"></script>
+</body>
+</html>

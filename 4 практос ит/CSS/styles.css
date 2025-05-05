@@ -1,0 +1,308 @@
+:root {
+    --primary: #6c5ce7;
+    --primary-light: #a29bfe;
+    --secondary: #00cec9;
+    --accent: #fd79a8;
+    --text: #2d3436;
+    --light-text: #636e72;
+    --bg: #f7f7ff;
+    --card-bg: #ffffff;
+    --border: #dfe6e9;
+    --success: #00b894;
+    --warning: #fdcb6e;
+    --danger: #d63031;
+    --low-priority: #55efc4;
+    --medium-priority: #74b9ff;
+    --high-priority: #ff7675;
+  }
+  
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+  
+  /* Основной контейнер */
+  .fluid-app {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    min-height: 100vh;
+  }
+  
+  /* Прогресс-блок */
+  .progress-container {
+    width: 100%;
+    height: 6px;
+    background-color: var(--border);
+    border-radius: 3px;
+    margin-bottom: 25px;
+    position: relative;
+  }
+  .progress-bar {
+    height: 100%;
+    border-radius: 3px;
+    background: linear-gradient(90deg, var(--primary), var(--accent));
+    width: 0%;
+    transition: width 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .progress-text {
+    position: absolute;
+    right: 10px;
+    top: -20px;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--primary);
+  }
+  
+  /* Заголовок */
+  .app-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+  }
+  
+  .date-nav {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+  
+  .nav-btn {
+    background: none;
+    border: none;
+    font-size: 20px;
+    color: var(--primary);
+    cursor: pointer;
+    padding: 5px 10px;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+  }
+  .nav-btn:hover {
+    background-color: rgba(108, 92, 231, 0.1);
+  }
+  .current-date {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--text);
+  }
+  
+  /* Круг прогресс */
+  .progress-circle {
+    position: relative;
+    width: 60px;
+    height: 60px;
+  }
+  .progress-circle svg {
+    transform: rotate(-90deg);
+  }
+  .progress-bg {
+    fill: none;
+    stroke: var(--border);
+    stroke-width: 4;
+  }
+  .progress-fill {
+    fill: none;
+    stroke: var(--primary);
+    stroke-width: 4;
+    stroke-linecap: round;
+    stroke-dasharray: 113;
+    stroke-dashoffset: 113;
+    transition: stroke-dashoffset 0.8s cubic-bezier(0.65, 0, 0.35, 1);
+  }
+  #circle-percent {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--primary);
+  }
+  
+  /* Задачи */
+  .tasks-container {
+    margin-bottom: 80px;
+    min-height: 60vh;
+  }
+  .task-card {
+    background-color: var(--card-bg);
+    border-radius: 14px;
+    padding: 18px;
+    margin-bottom: 15px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+  
+  /* Кнопка добавления задач */
+  .add-task-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 30px;
+    cursor: pointer;
+    box-shadow: 0 6px 20px rgba(108, 92, 231, 0.3);
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    z-index: 10;
+  }
+  .add-task-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 8px 25px rgba(108, 92, 231, 0.4);
+  }
+  
+  /* Модальное окно */
+  .edit-modal {
+    position: fixed;
+    top:0; left:0; right:0; bottom:0;
+    background-color: rgba(0,0,0,0.5);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+  }
+  .edit-modal.active {
+    display: flex;
+  }
+  .edit-content {
+    background-color: var(--card-bg);
+    padding: 25px;
+    border-radius: 16px;
+    width: 90%;
+    max-width: 400px;
+    transform: translateY(20px);
+    transition: transform 0.3s ease;
+  }
+  
+  .form-row {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    flex: 1;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 14px;
+    color: var(--light-text);
+}
+
+.task-time {
+    min-width: 50px;
+    font-weight: 500;
+    color: var(--primary);
+    margin-right: 15px;
+}
+
+/* Стили для выполненных задач */
+.task-card.completed {
+    opacity: 0.7;
+    background-color: #f8f9fa;
+}
+
+.task-card.completed .task-text {
+    text-decoration: line-through;
+    color: #6c757d;
+}
+
+/* Стили для кнопок действий */
+.task-actions {
+    display: flex;
+    gap: 8px;
+    margin-left: auto;
+}
+
+.task-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 5px;
+    opacity: 0.7;
+    transition: all 0.2s;
+}
+
+.task-btn:hover {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+.delete-btn {
+    color: #dc3545;
+}
+
+.edit-btn {
+    color: #007bff;
+}
+
+/* Стили для времени */
+.task-time {
+    min-width: 50px;
+    font-weight: 500;
+    color: #6c5ce7;
+    margin-right: 15px;
+}
+
+/* Анимация изменения прогресса */
+.progress-bar {
+    transition: width 0.6s ease;
+}
+
+circle.progress-fill {
+    transition: stroke-dashoffset 0.8s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+.datetime-picker {
+    display: flex;
+    gap: 15px;
+    margin: 20px 0;
+}
+
+.form-group {
+    flex: 1;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 14px;
+    color: #666;
+}
+
+.task-date-input,
+.task-time-input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-family: inherit;
+}
+
+.task-time-input {
+    /* Стилизация поля времени */
+    appearance: none;
+    background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%236c5ce7' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='10'%3E%3C/circle%3E%3Cpolyline points='12 6 12 12 16 14'%3E%3C/polyline%3E%3C/svg%3E") no-repeat right 10px center;
+    background-size: 16px;
+    padding-right: 35px;
+}
